@@ -4,7 +4,11 @@
   <form class="car-form" name="form" [formGroup]="form" fxLayout="column">
     <mat-form-field appearance="legacy">
       <mat-label>Vehicle Type</mat-label>
-      <input matInput formControlName="vehicleType">
+      <mat-select formControlName="vehicleType">
+        <mat-option *ngFor="let vehicleType of vehicleTypeOptions" [value]="vehicleType.value">
+          {{vehicleType.displayValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Make</mat-label>
@@ -24,7 +28,13 @@
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Body Type</mat-label>
-      <input matInput formControlName="bodyType">
+      <mat-select formControlName="bodyType">
+        <mat-option *ngFor="let bodyType of bodyTypeOptions" [value]="bodyType.value">
+          {{bodyType.displayValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </form>
 </div>
+
+<button mat-raised-button>Create</button>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CarModel, VehicleType, BodyType } from '../models/car.model';
 import { Guid } from "guid-typescript";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { VehicleTypeOptions, BodyTypeOptions } from '../models/constants';
 
 @Component({
   selector: 'app-fetch-data',
@@ -12,7 +13,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateCarComponent implements OnInit {
   public forecasts: WeatherForecast[];
   selectedCar: CarModel;
-  public form: FormGroup;
+  form: FormGroup;
+  vehicleTypeOptions = VehicleTypeOptions;
+  bodyTypeOptions = BodyTypeOptions;
 
   constructor(http: HttpClient,
     private _formBuilder: FormBuilder,
