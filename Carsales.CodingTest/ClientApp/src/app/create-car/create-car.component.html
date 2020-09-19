@@ -1,24 +1,30 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1>Create Car</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <form class="car-form" name="form" [formGroup]="form" fxLayout="column">
+    <mat-form-field appearance="legacy">
+      <mat-label>Vehicle Type</mat-label>
+      <input matInput formControlName="vehicleType">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Make</mat-label>
+      <input matInput formControlName="make">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Engine</mat-label>
+      <input matInput formControlName="engine">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Number of Doors</mat-label>
+      <input matInput formControlName="doorCount">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Number of Wheels</mat-label>
+      <input matInput formControlName="wheelCount">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Body Type</mat-label>
+      <input matInput formControlName="bodyType">
+    </mat-form-field>
+  </form>
+</div>
