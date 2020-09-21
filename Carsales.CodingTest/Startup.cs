@@ -1,9 +1,13 @@
 using AutoMapper;
+using Carsales.CodingTest.Domain.AggregatesModel.VehicleAggregate;
+using Carsales.CodingTest.Infrastructure;
+using Carsales.CodingTest.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,11 @@ namespace Carsales.CodingTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CarsalesDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("CarsalesInMemoryDb");
+            });
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -33,6 +42,7 @@ namespace Carsales.CodingTest
             // Inject services
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<ICarRepository, CarRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

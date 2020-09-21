@@ -13,6 +13,10 @@ namespace Carsales.CodingTest.Infrastructure
     {
         public DbSet<Car> Cars { get; set; }
 
+        public CarsalesDbContext(DbContextOptions<CarsalesDbContext> options) : base(options) {
+            Database.EnsureCreated();
+        }
+
         public async Task SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
             await base.SaveChangesAsync();
