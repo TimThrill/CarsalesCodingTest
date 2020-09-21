@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { CreateCarComponent } from './create-car/create-car.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarService } from './services/car.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

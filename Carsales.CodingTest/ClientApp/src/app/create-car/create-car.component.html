@@ -4,7 +4,7 @@
   <form class="car-form" name="form" [formGroup]="form" fxLayout="column">
     <mat-form-field appearance="legacy">
       <mat-label>Vehicle Type</mat-label>
-      <mat-select formControlName="vehicleType">
+      <mat-select formControlName="vehicleType" required>
         <mat-option *ngFor="let vehicleType of vehicleTypeOptions" [value]="vehicleType.value">
           {{vehicleType.displayValue}}
         </mat-option>
@@ -12,23 +12,25 @@
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Make</mat-label>
-      <input matInput formControlName="make">
+      <input matInput formControlName="make" required>
+      <mat-error *ngIf="form.get('make')?.errors?.required">Required Field</mat-error>
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Engine</mat-label>
-      <input matInput formControlName="engine">
+      <input matInput formControlName="engine" required>
+      <mat-error *ngIf="form.get('engine')?.errors?.required">Required Field</mat-error>
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Number of Doors</mat-label>
-      <input matInput formControlName="doorCount">
+      <input matInput type="number" formControlName="doorCount" required>
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Number of Wheels</mat-label>
-      <input matInput formControlName="wheelCount">
+      <input matInput type="number" formControlName="wheelCount" required>
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Body Type</mat-label>
-      <mat-select formControlName="bodyType">
+      <mat-select formControlName="bodyType" required>
         <mat-option *ngFor="let bodyType of bodyTypeOptions" [value]="bodyType.value">
           {{bodyType.displayValue}}
         </mat-option>
@@ -37,4 +39,4 @@
   </form>
 </div>
 
-<button mat-raised-button>Create</button>
+<button mat-raised-button (click)="onCreateCar()">Create</button>

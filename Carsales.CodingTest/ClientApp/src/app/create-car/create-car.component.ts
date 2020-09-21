@@ -4,6 +4,7 @@ import { CarModel, VehicleType, BodyType } from '../models/car.model';
 import { Guid } from "guid-typescript";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { VehicleTypeOptions, BodyTypeOptions } from '../models/constants';
+import { CarService } from '../services/car.service';
 
 @Component({
   selector: 'app-fetch-data',
@@ -17,13 +18,8 @@ export class CreateCarComponent implements OnInit {
   vehicleTypeOptions = VehicleTypeOptions;
   bodyTypeOptions = BodyTypeOptions;
 
-  constructor(http: HttpClient,
-    private _formBuilder: FormBuilder,
-    @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
-
+  constructor(private _carService: CarService,
+    private _formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -45,6 +41,19 @@ export class CreateCarComponent implements OnInit {
       doorCount: [this.selectedCar.doorCount, Validators.required],
       wheelCount: [this.selectedCar.wheelCount, Validators.required],
       bodyType: [this.selectedCar.bodyType, Validators.required]
+    });
+  }
+
+  onCreateCar() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.selectedCar = this.form.value as CarModel;
+    console.log("Create car: " + JSON.stringify(this.selectedCar));
+    this._carService.createCar(this.selectedCar).subscribe(() => {
+
     });
   }
 }
