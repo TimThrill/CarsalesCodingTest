@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Carsales.CodingTest.Application.Commands;
+using Carsales.CodingTest.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,15 +26,16 @@ namespace Carsales.CodingTest.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IActionResult GetCars()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Ok(Enumerable.Range(1, 5).Select(index => new CarViewModel
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55)
+                Id = Guid.NewGuid(),
+                Make = "Mazda",
+                Model = "Mazda - " + rng.Next(1, 10)
             })
-            .ToArray();
+            .ToList());
         }
 
         [HttpPost]

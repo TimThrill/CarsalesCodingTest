@@ -13,6 +13,14 @@ export class CarService {
     this._baseUrl = baseUrl;
   }
 
+  getCars(): Observable<CarModel[]> {
+    return this._http.get<CarModel[]>(`${this._baseUrl}api/car`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
   createCar(car: CarModel): Observable<Boolean> {
     return this._http.post<Boolean>(`${this._baseUrl}api/car`, car, {
       headers: {

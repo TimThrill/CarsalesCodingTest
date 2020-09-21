@@ -15,6 +15,7 @@ import { CounterComponent } from './counter/counter.component';
 import { CreateCarComponent } from './create-car/create-car.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarService } from './services/car.service';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CarService } from './services/car.service';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
