@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Carsales.CodingTest.Application.Commands
 {
-    public class CreateCarCommand
+    public class CreateCarCommand: IRequest
     {
         public Guid Id { get; set; }
         public int VehicleType { get; set; }
