@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Carsales.CodingTest.Application.Commands;
+using Carsales.CodingTest.Application.Queries;
 using Carsales.CodingTest.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,27 +16,23 @@ namespace Carsales.CodingTest.Controllers
     public class CarController : ControllerBase
     {
         private readonly IMediator _mediator;
-
+        private readonly ICarQuery _carQuery;
         private readonly ILogger<CarController> _logger;
 
         public CarController(ILogger<CarController> logger,
+            ICarQuery carQuery,
             IMediator mediator)
         {
             _logger = logger;
+            _carQuery = carQuery;
             _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult GetCars()
+        public async Task<IActionResult> GetCars()
         {
-            var rng = new Random();
-            return Ok(Enumerable.Range(1, 5).Select(index => new CarViewModel
-            {
-                Id = Guid.NewGuid(),
-                Make = "Mazda",
-                Model = "Mazda - " + rng.Next(1, 10)
-            })
-            .ToList());
+            var cars = await _carQuery.GetCars();
+            return Ok(cars);
         }
 
         [HttpPost]

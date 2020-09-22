@@ -16,6 +16,11 @@
       <mat-error *ngIf="form.get('make')?.errors?.required">Required Field</mat-error>
     </mat-form-field>
     <mat-form-field appearance="legacy">
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model" required>
+      <mat-error *ngIf="form.get('make')?.errors?.required">Required Field</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
       <mat-label>Engine</mat-label>
       <input matInput formControlName="engine" required>
       <mat-error *ngIf="form.get('engine')?.errors?.required">Required Field</mat-error>

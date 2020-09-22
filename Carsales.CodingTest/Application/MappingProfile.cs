@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Carsales.CodingTest.Application.Commands;
+using Carsales.CodingTest.Application.ViewModels;
 using Carsales.CodingTest.Domain.AggregatesModel.VehicleAggregate;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Carsales.CodingTest.Application
         public MappingProfile()
         {
             CreateMap<CreateCarCommand, Car>();
+            CreateMap<Car, CarViewModel>();
         }
     }
 }

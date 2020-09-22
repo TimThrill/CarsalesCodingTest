@@ -1,14 +1,14 @@
 import { Guid } from "guid-typescript";
 
 export interface CarModel {
-  id: Guid,
-  vehicleType: VehicleType,
-  make: string,
-  model: string,
-  engine: string,
-  doorCount: number,
-  wheelCount: number,
-  bodyType: BodyType
+  id: Guid;
+  vehicleType: VehicleType;
+  make: string;
+  model: string;
+  engine: string;
+  doorCount: number;
+  wheelCount: number;
+  bodyType: BodyType;
 }
 
 export enum VehicleType {

@@ -5,6 +5,7 @@ import { Guid } from "guid-typescript";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { VehicleTypeOptions, BodyTypeOptions } from '../models/constants';
 import { CarService } from '../services/car.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fetch-data',
@@ -19,6 +20,7 @@ export class CreateCarComponent implements OnInit {
   bodyTypeOptions = BodyTypeOptions;
 
   constructor(private _carService: CarService,
+    private _router: Router,
     private _formBuilder: FormBuilder) {
   }
 
@@ -37,6 +39,7 @@ export class CreateCarComponent implements OnInit {
     this.form = this._formBuilder.group({
       vehicleType: [this.selectedCar.vehicleType, Validators.required],
       make: [this.selectedCar.make, Validators.required],
+      model: [this.selectedCar.model, Validators.required],
       engine: [this.selectedCar.engine, Validators.required],
       doorCount: [this.selectedCar.doorCount, Validators.required],
       wheelCount: [this.selectedCar.wheelCount, Validators.required],
@@ -53,7 +56,9 @@ export class CreateCarComponent implements OnInit {
     this.selectedCar = this.form.value as CarModel;
     console.log("Create car: " + JSON.stringify(this.selectedCar));
     this._carService.createCar(this.selectedCar).subscribe(() => {
-
+      this._router.navigate(['/']);
+    }, (err) => {
+        console.error(err.toString());
     });
   }
 }

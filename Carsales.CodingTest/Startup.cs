@@ -1,4 +1,5 @@
 using AutoMapper;
+using Carsales.CodingTest.Application.Queries;
 using Carsales.CodingTest.Domain.AggregatesModel.VehicleAggregate;
 using Carsales.CodingTest.Infrastructure;
 using Carsales.CodingTest.Infrastructure.Repositories;
@@ -43,6 +44,7 @@ namespace Carsales.CodingTest
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarQuery, CarQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,7 +9,7 @@
 </mat-form-field>
 
 
-<table mat-table [dataSource]="dataSource" matSort style="margin-top: 10px; height: 1000px; width: 1000px" *ngIf="dataSource">
+<table mat-table [dataSource]="dataSource" matSort style="margin-top: 10px; width: 100%" *ngIf="dataSource">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
     <td mat-cell *matCellDef="let row">{{row.id}}</td>
