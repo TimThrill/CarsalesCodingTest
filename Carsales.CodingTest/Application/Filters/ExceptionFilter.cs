@@ -12,15 +12,18 @@ namespace Carsales.CodingTest.Application.Filters
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            context.Result = new ObjectResult(new
+            if(context.Exception != null)
             {
-                ExceptionMessage = context.Exception.Message,
-                InnerExceptionMessage = context.Exception.InnerException?.Message
-            })
-            {
-                StatusCode = (int)HttpStatusCode.BadRequest
-            };
-            context.ExceptionHandled = true;
+                context.Result = new ObjectResult(new
+                {
+                    ExceptionMessage = context.Exception.Message,
+                    InnerExceptionMessage = context.Exception.InnerException?.Message
+                })
+                {
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+                context.ExceptionHandled = true;
+            }
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
