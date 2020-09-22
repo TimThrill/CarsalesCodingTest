@@ -1,4 +1,5 @@
 using AutoMapper;
+using Carsales.CodingTest.Application.Filters;
 using Carsales.CodingTest.Application.Queries;
 using Carsales.CodingTest.Domain.AggregatesModel.VehicleAggregate;
 using Carsales.CodingTest.Infrastructure;
@@ -33,7 +34,9 @@ namespace Carsales.CodingTest
                 options.UseInMemoryDatabase("CarsalesInMemoryDb");
             });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => {
+                options.Filters.Add(new ExceptionFilter());
+            });
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
