@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carsales.CodingTest.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carsales.CodingTest.Infrastructure", "Carsales.CodingTest.Infrastructure\Carsales.CodingTest.Infrastructure.csproj", "{7FEAAB09-2DC5-4DD9-82CB-6322F72FA89C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carsales.CodingTest.Test", "Carsales.CodingTest.Test\Carsales.CodingTest.Test.csproj", "{096F82B8-1D8E-496E-8E17-D50474F7D4D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carsales.CodingTest.Test", "Carsales.CodingTest.Test\Carsales.CodingTest.Test.csproj", "{096F82B8-1D8E-496E-8E17-D50474F7D4D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A23D62E-B07B-4621-B0C3-F195D4CECB67}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

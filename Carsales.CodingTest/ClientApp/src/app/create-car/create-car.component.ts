@@ -58,7 +58,7 @@ export class CreateCarComponent implements OnInit {
     this._carService.createCar(this.selectedCar).subscribe(() => {
       this._router.navigate(['/']);
     }, (err) => {
-        console.error(err.toString());
+        console.error(JSON.stringify(err));
     });
   }
 }
