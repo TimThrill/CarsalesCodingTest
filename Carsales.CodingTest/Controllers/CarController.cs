@@ -38,6 +38,7 @@ namespace Carsales.CodingTest.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCar([FromBody] CreateCarCommand car)
         {
+            _logger.LogInformation($"Send Create Car Command. Car id: {car.Id}");
             await _mediator.Send(car);
             return Ok(true);
         }
