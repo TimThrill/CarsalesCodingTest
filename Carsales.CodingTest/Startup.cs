@@ -1,9 +1,13 @@
 using AutoMapper;
+using Carsales.CodingTest.Application.Commands;
 using Carsales.CodingTest.Application.Filters;
 using Carsales.CodingTest.Application.Queries;
+using Carsales.CodingTest.Application.Validations;
 using Carsales.CodingTest.Domain.AggregatesModel.VehicleAggregate;
 using Carsales.CodingTest.Infrastructure;
 using Carsales.CodingTest.Infrastructure.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +40,9 @@ namespace Carsales.CodingTest
 
             services.AddControllersWithViews(options => {
                 options.Filters.Add(new ExceptionFilter());
-            });
+            })
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateCarCommandValidator>());
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -44,6 +50,7 @@ namespace Carsales.CodingTest
             });
 
             // Inject services
+            services.AddTransient<IValidator<CreateCarCommand>, CreateCarCommandValidator>();
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ICarRepository, CarRepository>();

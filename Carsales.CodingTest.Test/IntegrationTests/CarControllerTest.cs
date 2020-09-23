@@ -4,6 +4,7 @@ using Carsales.CodingTest.Domain;
 using Carsales.CodingTest.Domain.AggregatesModel.VehicleAggregate;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -47,6 +48,29 @@ namespace Carsales.CodingTest.Test.IntegrationTests
 
             // Assert
             Assert.Equal(expectedCarNumber, cars.Count);
+        }
+
+        [Fact]
+        public async Task Post_CreateCarWithNegtiveDoorNumber_Failed()
+        {
+            var content = new StringContent(JsonSerializer.Serialize<CreateCarCommand>(
+                new CreateCarCommand
+                {
+                    Id = Guid.NewGuid(),
+                    Make = "Honda",
+                    Model = "CRV",
+                    Engine = "Z24",
+                    DoorCount = -1,
+                    WheelCount = 4,
+                    BodyType = (int)BodyType.Hatchback,
+                    VehicleType = (int)VehicleType.Car
+                }), Encoding.UTF8, "application/json");
+
+            // Act
+            var response = await _client.PostAsync("api/Car", content);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 }
